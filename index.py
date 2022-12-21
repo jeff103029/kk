@@ -15,7 +15,7 @@ def webhook3():
     msg =  req.get("queryResult").get("queryText")
                                                        
     if (action == "keywordchoice"):
-        keyword =  req.get("queryResult").get("parameters").get("keyword")
+     
         
         if (keyword == "物品"):
             collection_ref = db.collection("item")
