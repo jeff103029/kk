@@ -12,10 +12,10 @@ def webhook3():
     req = request.get_json(force=True)
     
     action =  req.get("queryResult").get("action")
-    msg =  req.get("queryResult").get("queryText")
+    #msg =  req.get("queryResult").get("queryText")
                                                        
     if (action == "keywordchoice"):
-     
+        keyword =  req.get("queryResult").get("parameters").get("keyword")
         
         if (keyword == "物品"):
             collection_ref = db.collection("item")
@@ -25,7 +25,7 @@ def webhook3():
             info = "您選擇的題目是：" + "\n"
             for doc in docs:
             print("題目：{}".format(doc.to_dict()))
-            dict = doc.to_dict()
+          
             if keyword in dict["item"]:
                 result += "題目：" + dict["Question"] + "\n"
         info += result
