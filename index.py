@@ -20,14 +20,13 @@ def webhook3():
         if (keyword == "物品"):
             collection_ref = db.collection("item")
             docs = collection_ref.order_by("Question").limit(10).get()
-            docs = collection_ref.get()
             result = ""
         
             info = "您選擇的題目是：" + "\n"
             for doc in docs:
                 dict=doc.to_dict()
           
-                if keyword in dict["item"]:
+                if keyword in dict["sort"]:
                 result += "題目：" + dict["Question"] + "\n"
         info += result
     return make_response(jsonify({"fulfillmentText": info}))
